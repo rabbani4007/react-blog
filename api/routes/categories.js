@@ -3,10 +3,9 @@ const User = require("../models/User");
 
 const Category = require("../models/Category");
 
-//POST
-router.post("/add", async (req, res) => {
+//ADD
+router.post("/", async (req, res) => {
   try {
-    console.log(req.body);
     const newCategory = new Category({
       name: req.body.name,
     });
@@ -14,18 +13,18 @@ router.post("/add", async (req, res) => {
 
     res.status(200).json(category);
   } catch (err) {
-    res.status(500).json({ data: err });
+    res.status(500).json(err);
   }
 });
 
 //GET
 
-router.get("categories", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    const category = await newCategory.save();
-    res.status(200).json(category);
+    const cats = await Category.find();
+    res.status(200).json(cats);
   } catch (err) {
-    res.status(500).json({ data: err });
+    res.status(500).json(err);
   }
 });
 module.exports = router;
