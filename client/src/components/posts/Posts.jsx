@@ -1,20 +1,13 @@
 import React from "react";
 import Post from "../post/Post";
 import "./posts.css";
-function Posts() {
+
+function Posts({ posts }) {
   return (
     <div className="posts">
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
+      {posts.map((p, idx) => (
+        <Post key={idx} post={p} />
+      ))}
     </div>
   );
 }

@@ -1,36 +1,31 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./post.css";
+const PF = "http://localhost:5000/images/";
 
-function Post() {
+function Post({ post }) {
   return (
     <div className="post">
-      <img className="postImg" src="/assets/blog-1.jpg" alt="" />
+      {post.photo && <img className="postImg" src={PF + post.photo} alt="" />}
       <div className="postInfo">
         <div className="postCats">
-          <span className="postCat">Music</span>
-          <span className="postCat">Life</span>
+          {post.categories.map((c, idx) => (
+            <span key={idx} className="postCat">
+              {c.name}
+            </span>
+          ))}
         </div>
         <span className="postTitle">
-          <Link className="link" to="/post/1">
-            Lorem ipsum dolor sit amet
+          <Link className="link" to={`/post/${post._id}`}>
+            {post.title}
           </Link>
         </span>
         <hr />
-        <span className="postDate">1 hour ago</span>
+        <span className="postDate">
+          {new Date(post.createdAt).toDateString()}
+        </span>
       </div>
-      <p className="postDesc">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus quaerat
-        nisi facilis fuga, odio quae molestiae iste magni. Voluptatibus
-        perspiciatis aliquam rem ipsa explicabo dolores tenetur dignissimos
-        voluptatem natus numquam! Lorem ipsum dolor sit, amet consectetur
-        adipisicing elit. Natus quaerat nisi facilis fuga, odio quae molestiae
-        iste magni. Voluptatibus perspiciatis aliquam rem ipsa explicabo dolores
-        tenetur dignissimos voluptatem natus numquam! Lorem ipsum dolor sit,
-        amet consectetur adipisicing elit. Natus quaerat nisi facilis fuga, odio
-        quae molestiae iste magni. Voluptatibus perspiciatis aliquam rem ipsa
-        explicabo dolores tenetur dignissimos voluptatem natus numquam!
-      </p>
+      <p className="postDesc">{post.desc}</p>
     </div>
   );
 }

@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../../context/Context";
 import "./topbar.css";
+const PF = "http://localhost:5000/images/";
 
 function TopBar() {
-  const user = true;
+  const { user, dispatch } = useContext(Context);
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+  };
   return (
     <div className="top">
       <div className="topLeft">
@@ -34,10 +39,8 @@ function TopBar() {
               WRITE
             </Link>
           </li>
-          <li className="topListItem">
-            <Link className="link" to="/">
-              {user && "LOGOUT"}
-            </Link>
+          <li className="topListItem" onClick={handleLogout}>
+            {user && "LOGOUT"}
           </li>
         </ul>
       </div>
@@ -46,7 +49,12 @@ function TopBar() {
           <Link className="link" to="/settings">
             <img
               className="topImg"
-              src="https://visualpharm.com/assets/30/User-595b40b85ba036ed117da56f.svg"
+              src={
+                PF +
+                (user.profilePicture
+                  ? user.profilePicture
+                  : "default-user-pic.svg")
+              }
               alt=""
             />
           </Link>
