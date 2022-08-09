@@ -28,7 +28,7 @@ function SinglePost() {
 
   const handleDelete = async () => {
     try {
-      const res = await axios.delete(`/posts/${path}`, {
+      await axios.delete(`/posts/${path}`, {
         data: { username: user.username },
       });
       window.location.replace("/");

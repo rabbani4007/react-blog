@@ -10,28 +10,35 @@ import Register from "./pages/register/Register";
 import About from "./pages/about/About";
 import Contact from "./pages/contact/Contact";
 import { Context } from "./context/Context";
+import Spinner from "./shared/spinner/Spinner";
 
 const App = () => {
-  const {user} = useContext(Context);
+  const { user, isFetching } = useContext(Context);
+  console.log(isFetching);
+
   return (
-    <Router>
-      <TopBar />
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
+    <>
+      {true && <Spinner />}
+      <Router>
+        <TopBar />
 
-        <Route path="/register" element={user ? <Home /> : <Register />} />
-        <Route path="/login" element={user ? <Home /> : <Login />} />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
 
-        <Route path="/write" element={user ? <Write /> : <Register />} />
-        <Route path="/settings" element={user ? <Settings /> : <Register />} />
+          <Route path="/register" element={user ? <Home /> : <Register />} />
+          <Route path="/login" element={user ? <Home /> : <Login />} />
 
-        <Route path="/post/:postId" element={<Single />} />
+          <Route path="/write" element={user ? <Write /> : <Login />} />
+          <Route path="/settings" element={user ? <Settings /> : <Login />} />
 
-        {/* <Route path="*" element={<NotFound/>}/> */}
-      </Routes>
-    </Router>
+          <Route path="/post/:postId" element={<Single />} />
+
+          {/* <Route path="*" element={<NotFound/>}/> */}
+        </Routes>
+      </Router>
+    </>
   );
 };
 
