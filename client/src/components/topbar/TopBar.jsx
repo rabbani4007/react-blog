@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
 import "./topbar.css";
-const PF = "http://localhost:5000/images/";
+const PF = process.env.IMAGE_PATH;
 
 function TopBar() {
   const { user, dispatch } = useContext(Context);

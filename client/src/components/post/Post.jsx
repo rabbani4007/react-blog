@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./post.css";
-const PF = "http://localhost:5000/images/";
+const PF = process.env.IMAGE_PATH;
 
 function Post({ post }) {
   return (

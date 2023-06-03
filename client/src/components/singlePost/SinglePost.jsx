@@ -4,7 +4,7 @@ import axios from "axios";
 import "./singlePost.css";
 
 import { Context } from "../../context/Context";
-const PF = "http://localhost:5000/images/";
+const PF = process.env.IMAGE_PATH;
 
 function SinglePost() {
   const location = useLocation();

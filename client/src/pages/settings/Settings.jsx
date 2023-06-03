@@ -3,7 +3,7 @@ import SideBar from "../../components/sidebar/SideBar";
 import { Context } from "../../context/Context";
 import "./settings.css";
 import axios from "axios";
-const PF = "http://localhost:5000/images/";
+const PF = process.env.IMAGE_PATH;
 
 function Settings() {
   const { user, dispatch } = useContext(Context);
