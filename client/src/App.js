@@ -18,7 +18,6 @@ const App = () => {
 
   return (
     <>
-      {true && <Spinner />}
       <Router>
         <TopBar />
 

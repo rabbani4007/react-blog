@@ -53,7 +53,7 @@ function TopBar() {
                 PF +
                 (user.profilePicture
                   ? user.profilePicture
-                  : "default-user-pic.svg")
+                  : "default-user-pic.png")
               }
               alt=""
             />
